@@ -1,0 +1,46 @@
+#
+$linux_updates = <<-SCRIPT
+  echo "Realizando Updates..."
+  apt-get update
+  apt-get upgrade -y
+  echo "Updates realizados com sucesso"
+SCRIPT
+
+$ssh_enable = <<-SCRIPT
+  echo "Habilitando acesso SSH..."
+  sed -i 's/PermitRootLogin no/PermitRootLogin yes/g' /etc/ssh/sshd_config
+  sed -i 's/PasswordAuthentication no/PasswordAuthentication yes/g' /etc/ssh/sshd_config
+  service sshd restart
+  echo "Acesso habilitado"
+SCRIPT
+
+$install_oxidized = <<-SCRIPT
+add-apt-repository universe -y
+apt-get install ruby ruby-dev libsqlite3-dev libssl-dev pkg-config cmake libssh2-1-dev libicu-dev zlib1g-dev g++ -y
+gem install oxidized
+gem install oxidized-script oxidized-web
+SCRIPT
+
+$config_oxidized = <<-SCRIPT
+  oxidized
+  cp /vagrant/config/config /root/.config/oxidized/
+  cp /vagrant/config/router.db /root/.config/oxidized/
+  mkdir /root/.config/oxidized/configs
+SCRIPT
+
+Vagrant.configure("2") do |config|
+
+  config.vm.box = "ubuntu/focal64"
+  #if you wish to do a NAT on your VM to the host
+  #ssh port of the server
+  #config.vm.network "forwarded_port", guest: 22, host: 2020
+  #Oxidized web port
+  #config.vm.network "forwarded_port", guest: 8888, host: 7443
+
+ 
+  config.vm.provision "shell", inline: $linux_updates
+  config.vm.provision "shell", inline: $install_oxidized
+  config.vm.provision "shell", inline: $config_oxidized
+  config.vm.provision "shell", inline: $ssh_enable
+
+end
