@@ -1,0 +1,3 @@
+#following the map and vars_map from config file, you have to follow this config format: IP:model:group:ssh port. That can be also changed on the config file
+192.168.10.40:fortios:fortigate:54222
+192.168.10.50:fortios:fortigate:2222
