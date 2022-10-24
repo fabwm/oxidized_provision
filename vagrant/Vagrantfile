@@ -1,17 +1,17 @@
 #
 $linux_updates = <<-SCRIPT
-  echo "Realizando Updates..."
+  echo "Installing Updates..."
   apt-get update
   apt-get upgrade -y
-  echo "Updates realizados com sucesso"
+  echo "Updates done"
 SCRIPT
 
 $ssh_enable = <<-SCRIPT
-  echo "Habilitando acesso SSH..."
+  echo "Enabling SSH access..."
   sed -i 's/PermitRootLogin no/PermitRootLogin yes/g' /etc/ssh/sshd_config
   sed -i 's/PasswordAuthentication no/PasswordAuthentication yes/g' /etc/ssh/sshd_config
   service sshd restart
-  echo "Acesso habilitado"
+  echo "Access Enable"
 SCRIPT
 
 $install_oxidized = <<-SCRIPT
