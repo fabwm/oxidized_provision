@@ -19,6 +19,5 @@ There will be a directory named config on this repository. There you will find t
 
 With Ansible will be a little more complex. Since Ansible need a private key ssh to connect to the server and a user with sudo privilegies (on the server that will be provisioned) First you will need to make the server user a sudoer and this user need to have the ability to run sudo commands without password. Then you have to generate a private and public ssh key to connect to the server.
 
-As soon as these requirements are meet, create/change the enviroments variables ANSIBLE_USER and ANSIBLE_HOST and run the full_provision.sh. This script automate the ssh private key before provisioning the server and them it will provision the server to run oxidized
+As soon as these requirements are meet, create/change the enviroments variables ANSIBLE_USER, ANSIBLE_HOST and SSH_PUBLICK_KEY as you need and run the full_provision.sh. This script automate the ssh private key before provisioning the server and them it will provision the server to run oxidized
 
-PS: If you use Ansible, edit the full_provision.sh before run it replacing *PATH_TO_PUBLICK_KEY* to the path of your public ssh key
