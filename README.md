@@ -21,3 +21,4 @@ With Ansible will be a little more complex. Since Ansible need a private key ssh
 
 As soon as these requirements are meet, create/change the enviroments variables ANSIBLE_USER, ANSIBLE_HOST and SSH_PUBLICK_KEY as you need and run the full_provision.sh. This script automate the ssh private key before provisioning the server and them it will provision the server to run oxidized
 
+PS: the vagrant file is using a box called "ubuntu/focal64". this specific box needs to enable ssh authentication enable if you wish to access the server without vagrant, so I made a script on vagrant file that does that, if you wish to disable it just comment the script lines
