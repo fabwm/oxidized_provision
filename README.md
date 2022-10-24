@@ -21,4 +21,4 @@ With Ansible will be a little more complex. Since Ansible need a private key ssh
 
 As soon as these requirements are meet, create/change the enviroments variables ANSIBLE_USER and ANSIBLE_HOST and run the full_provision.sh. This script automate the ssh private key before provisioning the server and them it will provision the server to run oxidized
 
-PS: Edit the full_provision.sh before run it replacing *PATH_TO_THE_PUBLICK_KEY* to the path of your public ssh key
+PS: If you use Ansible, edit the full_provision.sh before run it replacing *PATH_TO_THE_PUBLICK_KEY* to the path of your public ssh key
