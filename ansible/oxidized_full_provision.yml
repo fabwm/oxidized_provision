@@ -1,0 +1,73 @@
+---
+- hosts: all
+  tasks:
+    - name: Instalando Updates 
+      apt:
+        force_apt_get: yes
+        cache_valid_time: 3600
+        force: yes
+        update_cache: yes
+        upgrade: 'dist'
+      become: yes
+    - name: Adicionando repositorio universe  
+      shell: 'add-apt-repository universe -y'
+      become: yes
+    - name: Instalando ruby-dev    
+      apt:
+        name: ruby-dev
+        state: latest
+      become: yes
+    - name: Instalando libsqlite3-dev  
+      apt:
+        name: libsqlite3-dev
+        state: latest
+      become: yes
+    - name: Instalando libssl-dev  
+      apt:
+        name: libssl-dev
+        state: latest
+      become: yes
+    - name: Instalando pkg-config  
+      apt:
+        name: pkg-config
+        state: latest
+      become: yes
+    - name: Instalando cmake  
+      apt:
+        name: cmake
+        state: latest
+      become: yes
+    - name: Instalando libssh2-1-dev
+      apt:
+        name: libssh2-1-dev
+        state: latest
+      become: yes
+    - name: Instalando libicu-dev  
+      apt:
+        name: libicu-dev
+        state: latest
+      become: yes
+    - name: Instalando zlib1g-dev  
+      apt:
+        name: zlib1g-dev
+        state: latest
+      become: yes
+    - name: Instalando g++  
+      apt:
+        name: g++
+        state: latest
+      become: yes
+    - name: Instalando Oxidized - Web e Script  
+      shell: 'gem install oxidized && gem install oxidized-script oxidized-web'
+      become: yes
+    - name: Criando diretorio do Oxidized  
+      shell: 'oxidized || /bin/true'
+      become: yes
+    - name: Copiando o arquivo de rota para o diretorio oxidized  
+      shell: 'cp  /home/ptg/router.db /root/.config/oxidized/'
+      become: yes
+    - name: Copiando o arquivo de configuração para o diretorio oxidized   
+      shell: 'cp /home/ptg/config /root/.config/oxidized/'
+      become: yes
+
+
