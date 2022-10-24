@@ -1,7 +1,7 @@
 
 #!/bin/bash
 echo "Copiando chave ssh..."
-scp *PATH_TO_PUBLICK_KEY* $ANSIBLE_USER@$ANSIBLE_HOST:/home/$ANSIBLE_USER/.ssh/uploaded_rsa.pub
+scp $SSH_PUBLIC_KEY $ANSIBLE_USER@$ANSIBLE_HOST:/home/$ANSIBLE_USER/.ssh/uploaded_rsa.pub
 ansible oxidized -u $ANSIBLE_USER -i hosts -m shell -a 'cat ~/.ssh/uploaded_rsa.pub >> ~/.ssh/authorized_keys' -k
 ansible oxidized -u $ANSIBLE_USER -i hosts -m shell -a 'rm ~/.ssh/uploaded_rsa.pub'
 echo "Copiando arquivo de rota..."
